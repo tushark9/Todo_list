@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+</head>
+<style>
+    /* CSS */
+    body {
+        background-color: purple;
+    }
+
+    #space {
+        width: 380px;
+        height: 70px;
+        background-color: white;
+        margin-left: 100px;
+        border-radius: 5px;
+    }
+
+    form {
+        margin-top: 70px;
+        margin-left: 15px;
+        padding: 20px;
+    }
+
+    #btn {
+        background-color: rgb(37, 6, 37);
+        color: white;
+        border: 2px solid black;
+        padding: 6px 20px;
+        border-radius: 5px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bold;
+        margin-left: 20px;
+        cursor: pointer;
+
+    }
+
+    .writtenSpace {
+        border: 2px solid black;
+        padding: 5px 20px;
+        border-radius: 5px;
+    }
+
+    #addition {
+        margin-top: 10px;
+
+    }
+
+    ul {
+        margin-top: 10px;
+        width: min-content;
+        height: min-content;
+        background-color: white;
+        margin-left: 100px;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding-top: 20px;
+        padding-left: 35px;
+    }
+
+    .editBtn {
+        background-color: rgb(37, 6, 37);
+        color: white;
+        border: 2px solid black;
+        padding: 6px 20px;
+        border-radius: 5px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 2px;
+
+    }
+
+    .deleteBtn {
+        background-color: rgb(37, 6, 37);
+        color: white;
+        border: 2px solid black;
+        padding: 6px 20px;
+        border-radius: 5px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 2px;
+
+    }
+
+    .butt {
+        display: flex;
+    }
+</style>
+
+<body>
+    <!-- HTML -->
+    <div id="space">
+        <form action="#">
+            <input type="text" class="writtenSpace" id="item" name="writtenSpace" placeholder="Task to be done">
+            <button id="btn" type="button" onclick="abc()">Add</button>
+        </form>
+    </div>
+
+    <div id="addition">
+
+
+    </div>
+
+    <!-- JAVASCRIPT  -->
+    <script>
+        function abc() {
+            const itm = document.createElement("ul");
+            itm.innerHTML = `
+            <span>${item.value}</span>
+            <div class=" butt">
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+            </div>`
+            document.getElementById("addition").appendChild(itm);
+            document.getElementById("item").value = "";
+            attachEditDeleteListeners(itm);
+        }
+        function attachEditDeleteListeners(itm) {
+            const editBtn = itm.querySelector('.editBtn');
+            const deleteBtn = itm.querySelector('.deleteBtn');
+            const taskText = itm.querySelector('span');
+
+            editBtn.addEventListener('click', () => {
+                const newText = prompt('Edit task:', taskText.textContent);
+                taskText.textContent = newText;
+            });
+            deleteBtn.addEventListener('click', () => {
+                itm.remove();
+            });
+        }
+
+    </script>
+</body>
+
+</html>
